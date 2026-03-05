@@ -1,44 +1,46 @@
-# 🤖 Automatizador de Zoom
+﻿# Automatizador-de-zoom - Nginx Edge + Selenium Grid
 
-Herramienta de automatización para Zoom desarrollada por **Isaac Esteban Haro Torres**.
+Arquitectura estilo laboratorio de automatizacion de reuniones con Selenium Grid expuesto por Nginx.
+
+## Arquitectura
+
+- `zoom-controller`: API para acciones de automatizacion.
+- `selenium-hub` + `chrome`: grid para ejecucion de navegacion remota.
+- `zoom-nginx`: expone API y WebDriver con un solo punto de entrada.
+
+## Levantar
+
+```bash
+docker compose up -d --build
+```
+
+Endpoints:
+
+- `http://localhost:8084/api/health`
+- `http://localhost:8084/wd/hub/status`
+
+## Variables
+
+- `NGINX_PORT`: puerto del edge.
+
+## Valor para perfil
+
+- Integracion de testing browser automation en entorno servidor.
+- Nginx como fachada de servicios internos.
 
 ---
 
-## 📝 Descripción
-
-Aplicación de escritorio para automatizar tareas relacionadas con la plataforma de videoconferencias Zoom.
-
----
-
-## ✨ Características
-
-- Unirse automáticamente a reuniones
-- Gestionar estado del micrófono o cámara
-- Grabar sesiones
-- Interactuar con elementos de la interfaz de Zoom
-
----
-
-## 🛠️ Stack Tecnológico
-
-- Python
-- Tkinter (interfaz gráfica)
-- Selenium
-- Windows (.exe)
-
----
-
-## 👨‍💻 Desarrollado por Isaac Esteban Haro Torres
+## ‍ Desarrollado por Isaac Esteban Haro Torres
 
 **Ingeniero en Sistemas · Full Stack · Automatización · Data**
 
-- 📧 Email: zackharo1@gmail.com
-- 📱 WhatsApp: 098805517
-- 💻 GitHub: https://github.com/ieharo1
-- 🌐 Portafolio: https://ieharo1.github.io/portafolio-isaac.haro/
+-  Email: zackharo1@gmail.com
+-  WhatsApp: 098805517
+-  GitHub: https://github.com/ieharo1
+-  Portafolio: https://ieharo1.github.io/portafolio-isaac.haro/
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
 © 2026 Isaac Esteban Haro Torres - Todos los derechos reservados.
