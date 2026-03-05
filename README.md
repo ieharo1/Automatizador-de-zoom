@@ -1,32 +1,70 @@
-﻿# Automatizador-de-zoom - Nginx Edge + Selenium Grid
+﻿# Edge de Automatización Browser con Selenium Grid y Nginx
 
-Arquitectura estilo laboratorio de automatizacion de reuniones con Selenium Grid expuesto por Nginx.
+Arquitectura de laboratorio/prod para automatización web distribuida, con gateway unificado y ejecución remota de navegador.
 
-## Arquitectura
+## Descripción
 
-- `zoom-controller`: API para acciones de automatizacion.
-- `selenium-hub` + `chrome`: grid para ejecucion de navegacion remota.
-- `zoom-nginx`: expone API y WebDriver con un solo punto de entrada.
+Este servidor integra controlador de automatización y Selenium Grid para ejecutar acciones de navegador en contenedores aislados.
 
-## Levantar
+## ¿Qué hace este proyecto?
+
+- Expone API de control para automatizaciones.
+- Provee Selenium Hub + nodo Chrome para ejecución remota.
+- Centraliza endpoints técnicos mediante Nginx.
+- Permite separar orquestación de ejecución browser.
+
+## Características Principales
+
+| Característica | Descripción |
+|---|---|
+| Selenium Grid | Escenario listo para automatización remota |
+| API de control | Endpoint de integración para flujos automatizados |
+| Gateway unificado | `/api` y `/wd/hub` bajo un host |
+| Escalable | Posibilidad de aumentar nodos browser |
+
+## Stack Tecnológico
+
+- Python Flask
+- Selenium Grid
+- Nginx
+- Docker Compose
+
+## Instalación y Uso
+
+### Levantar entorno
 
 ```bash
 docker compose up -d --build
 ```
 
-Endpoints:
+### Probar
 
-- `http://localhost:8084/api/health`
-- `http://localhost:8084/wd/hub/status`
+- API health: `http://localhost:8084/api/health`
+- Estado WebDriver: `http://localhost:8084/wd/hub/status`
 
-## Variables
+## Variables de Entorno
 
-- `NGINX_PORT`: puerto del edge.
+- `NGINX_PORT`: puerto público de la plataforma.
 
-## Valor para perfil
+## Estructura del Proyecto
 
-- Integracion de testing browser automation en entorno servidor.
-- Nginx como fachada de servicios internos.
+```text
+.
+├── Dockerfile
+├── docker-compose.yml
+├── .env
+├── controller/
+│   ├── app.py
+│   └── requirements.txt
+└── nginx/
+    └── default.conf
+```
+
+## Casos de Uso
+
+- QA automatizado de aplicaciones web.
+- Bots de navegación para tareas repetitivas.
+- Entornos de pruebas E2E containerizados.
 
 ---
 
